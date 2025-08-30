@@ -106,3 +106,15 @@ jspm_packages/
 
 # Prisma
 prisma/migrations/
+
+# Production specific
+.env.production
+.env.staging
+.env.local.production
+
+# Vercel specific
+.vercel/output/
+
+# Temporary files
+*.tmp
+*.temp

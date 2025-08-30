@@ -106,55 +106,83 @@ marketplace/
 3. **Set up environment variables**
    ```bash
    cp env.example .env.local
-   ```
-   
-   Fill in your environment variables:
-   ```env
-   # Database
-   DATABASE_URL="postgresql://username:password@localhost:5432/marketplace"
-   
-   # NextAuth
-   NEXTAUTH_URL="http://localhost:3000"
-   NEXTAUTH_SECRET="your-secret-key"
-   
-   # Google OAuth
-   GOOGLE_CLIENT_ID="your-google-client-id"
-   GOOGLE_CLIENT_SECRET="your-google-client-secret"
-   
-   # Stripe
-   STRIPE_PUBLISHABLE_KEY="pk_test_..."
-   STRIPE_SECRET_KEY="sk_test_..."
-   STRIPE_WEBHOOK_SECRET="whsec_..."
-   STRIPE_CONNECT_CLIENT_ID="ca_..."
-   
-   # Cloudinary
-   CLOUDINARY_CLOUD_NAME="your-cloud-name"
-   CLOUDINARY_API_KEY="your-api-key"
-   CLOUDINARY_API_SECRET="your-api-secret"
-   
-   # Pusher
-   PUSHER_APP_ID="your-app-id"
-   PUSHER_KEY="your-key"
-   PUSHER_SECRET="your-secret"
-   PUSHER_CLUSTER="your-cluster"
-   
-   # Resend
-   RESEND_API_KEY="your-api-key"
+   # Edit .env.local with your credentials
    ```
 
-4. **Set up the database**
+4. **Set up database**
    ```bash
-   npx prisma generate
-   npx prisma db push
+   npm run db:generate
+   npm run db:push
    ```
 
-5. **Run the development server**
+5. **Run development server**
    ```bash
    npm run dev
    ```
 
-6. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
+## 🚀 Deployment
+
+### Vercel Deployment (Recommended)
+
+This project is optimized for Vercel deployment with the following features:
+
+- **Automatic builds** with Prisma client generation
+- **Serverless functions** optimized for Vercel
+- **Environment variables** management
+- **Database integration** with Vercel Postgres
+- **Performance optimizations** for production
+
+#### Quick Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/marketplace)
+
+#### Manual Deployment
+
+1. **Install Vercel CLI**
+   ```bash
+   npm i -g vercel
+   ```
+
+2. **Deploy to Vercel**
+   ```bash
+   vercel --prod
+   ```
+
+3. **Set environment variables** in Vercel dashboard
+4. **Connect your database** (Vercel Postgres recommended)
+5. **Run database migrations**
+   ```bash
+   npx prisma migrate deploy
+   ```
+
+For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+### Environment Variables
+
+Set these in your Vercel dashboard:
+
+```bash
+# Required
+NEXTAUTH_URL=https://your-domain.vercel.app
+NEXTAUTH_SECRET=your-secret-key
+DATABASE_URL=your-database-connection-string
+
+# OAuth
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+
+# Services
+STRIPE_PUBLISHABLE_KEY=your-stripe-key
+STRIPE_SECRET_KEY=your-stripe-secret
+CLOUDINARY_CLOUD_NAME=your-cloud-name
+# ... and other service keys
+```
+
+## 📚 Documentation
+
+- [Deployment Guide](./DEPLOYMENT.md) - Complete Vercel deployment instructions
+- [API Documentation](./docs/API.md) - API endpoints and usage
+- [Database Schema](./docs/DATABASE.md) - Database structure and relationships
 
 ## 📊 Database Schema
 
